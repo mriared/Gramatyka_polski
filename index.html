@@ -570,8 +570,518 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // ===== Wbudowane ćwiczenia (zaimportowane z polish-grammar-exercises.xlsx) =====
+        const BUILT_IN_EXERCISES = [
+            {
+                        "id": 1,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Jan jest ____________.",
+                        "hint": "(pisarz)",
+                        "answer": "pisarzem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 2,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Mój ojciec jest ____________.",
+                        "hint": "(dziennikarz)",
+                        "answer": "dziennikarzem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 3,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Czy ten pan jest ____________?",
+                        "hint": "(malarz)",
+                        "answer": "malarzem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 4,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Mikołaj jest ____________.",
+                        "hint": "(informatyk)",
+                        "answer": "informatykiem",
+                        "rule": "Po spółgłoskach 'k' oraz 'g' w narzędniku rodzaju męskiego dodajemy końcówkę -iem (np. informatyk -> informatykiem)."
+            },
+            {
+                        "id": 5,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Jan Korenc jest ____________.",
+                        "hint": "(pilot)",
+                        "answer": "pilotem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 6,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Jej brat nie jest ____________.",
+                        "hint": "(nauczyciel)",
+                        "answer": "nauczycielem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 7,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "On jest ____________.",
+                        "hint": "(policjant)",
+                        "answer": "policjantem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 8,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Maciek jest ____________.",
+                        "hint": "(architekt)",
+                        "answer": "architektem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 9,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Krzysztof Penderecki jest ____________.",
+                        "hint": "(dyrygent)",
+                        "answer": "dyrygentem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 10,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Jesteś ____________?",
+                        "hint": "(fryzjer)",
+                        "answer": "fryzjerem",
+                        "rule": "Rzeczowniki rodzaju męskiego w liczbie pojedynczej w narzędniku kończą się na -em (np. pisarz -> pisarzem, malarz -> malarzem)."
+            },
+            {
+                        "id": 11,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Ja jestem ____________.",
+                        "hint": "(nauczycielka)",
+                        "answer": "nauczycielką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 12,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Kasia jest ____________.",
+                        "hint": "(studentka)",
+                        "answer": "studentką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 13,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Moja matka jest ____________.",
+                        "hint": "(lekarka)",
+                        "answer": "lekarką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 14,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Ona jest ____________.",
+                        "hint": "(lektorka)",
+                        "answer": "lektorką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 15,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Moja siostra jest ____________.",
+                        "hint": "(pisarka)",
+                        "answer": "pisarką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 16,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Ta pani nie jest ____________.",
+                        "hint": "(modelka)",
+                        "answer": "modelką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 17,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Jesteś ____________?",
+                        "hint": "(fryzjerka)",
+                        "answer": "fryzjerką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 18,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Czy Jagoda jest ____________?",
+                        "hint": "(kelnerka)",
+                        "answer": "kelnerką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 19,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Monika Luft jest ____________.",
+                        "hint": "(terapeutka)",
+                        "answer": "terapeutką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 20,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Pani Ania jest ____________.",
+                        "hint": "(pielęgniarka)",
+                        "answer": "pielęgniarką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku mają końcówkę -ą (np. nauczycielka -> nauczycielką)."
+            },
+            {
+                        "id": 21,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Mój brat jest ____________ człowiekiem.",
+                        "hint": "(dobry)",
+                        "answer": "dobrym",
+                        "rule": "Przymiotniki rodzaju męskiego w narzędniku liczby pojedynczej mają końcówkę -ym / -im (np. dobry -> dobrym, tani -> tanim)."
+            },
+            {
+                        "id": 22,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Kasia jest ____________ studentką.",
+                        "hint": "(ambitna)",
+                        "answer": "ambitną",
+                        "rule": "Przymiotniki rodzaju żeńskiego w narzędniku liczby pojedynczej mają końcówkę -ą (np. ambitna -> ambitną)."
+            },
+            {
+                        "id": 23,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "To jest film o ____________ mieście.",
+                        "hint": "(stary)",
+                        "answer": "starym",
+                        "rule": "Przymiotniki rodzaju nijakiego w narzędniku liczby pojedynczej mają końcówkę -ym / -im (np. starym, ładnym)."
+            },
+            {
+                        "id": 24,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Pan Tomasz jest ____________ lekarzem.",
+                        "hint": "(wysoki)",
+                        "answer": "wysokim",
+                        "rule": "Po spółgłoskach 'k' oraz 'g' w narzędniku przymiotnika dodajemy końcówkę -im zamiast -ym (np. wysoki -> wysokim)."
+            },
+            {
+                        "id": 25,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Rozmawiam z ____________ sąsiadką.",
+                        "hint": "(miła)",
+                        "answer": "miłą",
+                        "rule": "Przymiotniki rodzaju żeńskiego w narzędniku liczby pojedynczej mają końcówkę -ą (np. miła -> miłą)."
+            },
+            {
+                        "id": 26,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Mój ojciec jest ____________ dziennikarzem.",
+                        "hint": "(znany)",
+                        "answer": "znanym",
+                        "rule": "Przymiotniki rodzaju męskiego w narzędniku liczby pojedynczej mają końcówkę -ym / -im (np. znany -> znanym)."
+            },
+            {
+                        "id": 27,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "On interesuje się ____________ sportem.",
+                        "hint": "(polski)",
+                        "answer": "polskim",
+                        "rule": "Po spółgłoskach 'k' oraz 'g' w narzędniku przymiotnika dodajemy końcówkę -im zamiast -ym (np. polski -> polskim)."
+            },
+            {
+                        "id": 28,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Ona jest bardzo ____________ dziewczyną.",
+                        "hint": "(sympatyczna)",
+                        "answer": "sympatyczną",
+                        "rule": "Przymiotniki rodzaju żeńskiego w narzędniku liczby pojedynczej mają końcówkę -ą (np. sympatyczna -> sympatyczną)."
+            },
+            {
+                        "id": 29,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Jesteś dzisiaj bardzo ____________.",
+                        "hint": "(roztargniony)",
+                        "answer": "roztargniony",
+                        "rule": "Gdy przymiotnik występuje po orzeczeniu (jestem/jesteś) bez rzeczownika, pozostaje w mianowniku (np. Jesteś roztargniony)."
+            },
+            {
+                        "id": 30,
+                        "category": [
+                                    "Narzędnik – przymiotniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą przymiotnika w narzędniku.",
+                        "sentence": "Moja siostra jest ____________ pisarką.",
+                        "hint": "(słynna)",
+                        "answer": "słynną",
+                        "rule": "Przymiotniki rodzaju żeńskiego w narzędniku liczby pojedynczej mają końcówkę -ą (np. słynna -> słynną)."
+            },
+            {
+                        "id": 31,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "W mojej rodzinie wszyscy są albo lekarzami, albo ____________.",
+                        "hint": "nauczyciel",
+                        "answer": "nauczycielami",
+                        "rule": "Rzeczowniki w liczbie mnogiej w narzędniku bez względu na rodzaj otrzymują końcówkę -ami."
+            },
+            {
+                        "id": 32,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Moja babcia i mój dziadek ze strony mamy byli ____________ i pracowali w liceum.",
+                        "hint": "historyk",
+                        "answer": "historykami",
+                        "rule": "Rzeczowniki w liczbie mnogiej w narzędniku bez względu na rodzaj otrzymują końcówkę -ami."
+            },
+            {
+                        "id": 33,
+                        "category": [
+                                    "Narzędnik – rzeczowniki"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą rzeczownika w narzędniku.",
+                        "sentence": "Moja druga babcia i drugi dziadek byli ____________.",
+                        "hint": "dentysta",
+                        "answer": "dentystami",
+                        "rule": "Rzeczowniki w liczbie mnogiej w narzędniku bez względu na rodzaj otrzymują końcówkę -ami."
+            },
+            {
+                        "id": 34,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Lucía jest z Hiszpanii. Ona jest ____________.",
+                        "hint": "Hiszpanka",
+                        "answer": "Hiszpanką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 35,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Olga jest z Czech. Ona jest ____________.",
+                        "hint": "Czeszka",
+                        "answer": "Czeszką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 36,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Emily jest z Irlandii. Ona jest ____________.",
+                        "hint": "Irlandka",
+                        "answer": "Irlandką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 37,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Julija jest z Ukrainy. Ona jest ____________.",
+                        "hint": "Ukrainka",
+                        "answer": "Ukrainką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 38,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Dalma jest z Węgier. Ona jest ____________.",
+                        "hint": "Węgierka",
+                        "answer": "Węgierką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 39,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Elisabeth jest z Ameryki. Ona jest ____________.",
+                        "hint": "Amerykanka",
+                        "answer": "Amerykanką",
+                        "rule": "Rzeczowniki rodzaju żeńskiego zakończone na -a w narzędniku liczby pojedynczej mają końcówkę -ą."
+            },
+            {
+                        "id": 40,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Michael jest z Ameryki. On jest ____________.",
+                        "hint": "Amerykanin",
+                        "answer": "Amerykaninem",
+                        "rule": "Rzeczowniki rodzaju męskiego zakończone na -in mają w narzędniku końcówkę -inem."
+            },
+            {
+                        "id": 41,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Elias jest ze Szwecji. On jest ____________.",
+                        "hint": "Szwed",
+                        "answer": "Szwedem",
+                        "rule": "Rzeczowniki rodzaju męskiego w narzędniku liczby pojedynczej zazwyczaj kończą się na -em."
+            },
+            {
+                        "id": 42,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Markus jest z Norwegii. On jest ____________.",
+                        "hint": "Norweg",
+                        "answer": "Norwegiem",
+                        "rule": "Po spółgłoskach k oraz g w narzędniku rodzaju męskiego dodajemy końcówkę -iem."
+            },
+            {
+                        "id": 43,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Jonas jest z Niemiec. On jest ____________.",
+                        "hint": "Niemiec",
+                        "answer": "Niemcem",
+                        "rule": "Rzeczowniki rodzaju męskiego w narzędniku kończą się na -em (następuje tu zanik 'ie': Niemiec -> Niemcem)."
+            },
+            {
+                        "id": 44,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Daan jest z Holandii. On jest ____________.",
+                        "hint": "Holender",
+                        "answer": "Holendrem",
+                        "rule": "Rzeczowniki rodzaju męskiego w narzędniku kończą się na -em (z e ruchomym: Holender -> Holendrem)."
+            },
+            {
+                        "id": 45,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Bence jest z Węgier. On jest ____________.",
+                        "hint": "Węgier",
+                        "answer": "Węgrem",
+                        "rule": "Rzeczowniki rodzaju męskiego w narzędniku kończą się na -em (z e ruchomym: Węgier -> Węgrem)."
+            },
+            {
+                        "id": 46,
+                        "category": [
+                                    "Narzędnik – narodowości"
+                        ],
+                        "instruction": "Uzupełnij zdanie odpowiednią formą narodowości w narzędniku.",
+                        "sentence": "Liam jest z Kanady. On jest ____________.",
+                        "hint": "Kanadyjczyk",
+                        "answer": "Kanadyjczykiem",
+                        "rule": "Po spółgłoskach k oraz g w narzędniku rodzaju męskiego dodajemy końcówkę -iem."
+            }
+];
+
         function PolishGrammarApp() {
-            const [exercises, setExercises] = useState([]);
+            const [exercises, setExercises] = useState(BUILT_IN_EXERCISES);
             const [currentIndex, setCurrentIndex] = useState(0);
             const [userAnswer, setUserAnswer] = useState('');
             const [feedback, setFeedback] = useState(null);
@@ -716,7 +1226,7 @@
                         <h2>📥 Importuj Ćwiczenia</h2>
                         <div className="import-section">
                             <p style={{marginBottom: '1rem', color: 'var(--charcoal)'}}>
-                                Wybierz plik Excel z ćwiczeniami lub pobierz szablon
+                                ✅ {exercises.length} ćwiczeń jest już wbudowanych. Możesz wczytać własny plik Excel, aby je zastąpić, lub pobrać szablon.
                             </p>
                             <div className="file-input-wrapper">
                                 <input 
